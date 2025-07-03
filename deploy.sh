@@ -38,7 +38,7 @@ find dist/images -type f -iname "*.png" -exec optipng -o1 {} \;
 echo "# Mengoptimasi gambar JPG/JPEG #"
 find dist/images -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) -exec jpegoptim --max=80 {} \;
 
-echo "Validasi file-file html"
+echo "# Validasi file-file html #"
 for file in dist/*.html; do
   echo "Validasi $file"
   OUTPUT=$(html-validator --file "$file" --validator http://localhost:8888 --verbose 2>&1)
@@ -54,7 +54,7 @@ for file in dist/*.html; do
   fi
 done
 
-echo "Stop dan Remove Container Lama #"
+echo "# Stop dan Remove Container Lama #"
 docker stop jenkinsapss 2>/dev/null || true
 docker rm jenkinsapss 2>/dev/null || true
 
