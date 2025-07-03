@@ -35,7 +35,7 @@ cp -r images/* dist/images/
 echo "# Mengoptimasi gambar PNG #"
 find dist/images -type f -iname "*.png" | while read f; do
   a=$(stat -c%s "$f")
-  optipng -quiet -o1 "$f" > /dev/null
+  optipng -quiet -o2 "$f" > /dev/null
   b=$(stat -c%s "$f")
   p=$(( (a - b) * 100 / (a + 1) ))
   echo "$f [OK] $a --> $b bytes ($p%), optimized."
