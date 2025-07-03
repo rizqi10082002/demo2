@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "# Pindah ke Direktori Job Jenkins #"
-cd /var/lib/jenkins/workspace/demo/ || exit 1
+cd /var/lib/jenkins/workspace/demo2/ || exit 1
 
 echo "# Hapus direktori (jika ada) lalu di buat ulang direktori dist #"
 rm -rf dist
