@@ -33,7 +33,13 @@ mkdir -p dist/images
 cp -r images/* dist/images/
 
 echo "# Mengoptimasi gambar PNG #"
-find dist/images -type f -iname "*.png" -exec optipng -o1 {} \;
+find dist/images -type f -iname "*.png" | while read f; do
+  a=$(stat -c%s "$f")
+  optipng -quiet -o1 "$f" > /dev/null
+  b=$(stat -c%s "$f")
+  p=$(( (a - b) * 100 / (a + 1) ))
+  echo "$f [OK] $a --> $b bytes ($p%), optimized."
+done
 
 echo "# Mengoptimasi gambar JPG/JPEG #"
 find dist/images -type f \( -iname "*.jpg" -o -iname "*.jpeg" \) -exec jpegoptim --max=80 {} \;
